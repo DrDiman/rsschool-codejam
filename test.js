@@ -4,6 +4,7 @@ Object.freeze(assert);
 
 const sumOfOther = require('./sumOfOther');
 const make = require('./make');
+const recursion = require('./recursion');
 
 function sum(a, b) {
   return a + b;
@@ -54,5 +55,17 @@ describe('Make it with different functions', () => {
   it('4 with func "mul"', () => {
     const solution = make(15)(3, 21, 12)(41)(mul);
     assert.deepEqual(solution, 464940);
+  });
+});
+
+describe('tree transform into array', () => {
+  it('1', () => {
+    const solution = recursion({"value":100,"left":{"value":90,"left":{"value":70},"right":{"value":99}},"right":{"value":120,"left":{"value":110},"right":{"value":130}}});
+    assert.deepEqual(solution, [[100], [90, 120], [70, 99, 110, 130]]);
+  });
+
+  it('2', () => {
+    const solution = recursion({"value":100,"left":{"value":80,"left":{"value":75},"right":{"value":99}},"right":{"value":101,"left":{"value":110},"right":{"value":130}}});
+    assert.deepEqual(solution, [[100], [80, 101], [75, 99, 110, 130]]);
   });
 });
